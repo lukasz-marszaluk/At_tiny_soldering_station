@@ -12,7 +12,6 @@ SSD1306_Mini oled;
 
 //  ============================================================================
 char buffer[32];
-
 //  ============================================================================
 int main()
 {
@@ -25,37 +24,37 @@ int main()
   oled.startScreen();
   oled.clear();
 
-  set_heater_power(127);
+  heater_power = 0;
 
   while (1)
   {
     sensor_temp = read_temp();
-    sprintf(buffer, "%uHz  ", sensor_temp);
+    sprintf(buffer, "%uHz     ", sensor_temp);
 
     oled.cursorTo (0, 0);
     oled.printString (buffer);
 
     switch (read_buttons())
     {
-    case BTN_NONE:
-      sprintf(buffer, "none    ");
-      break;
     case BTN_UP:
-      sprintf(buffer, "up      ");
+      ++heater_power;
       break;
     case BTN_DOWN:
-      sprintf(buffer, "down    ");
+      --heater_power;
       break;
-    case BTN_BOTH:
-      sprintf(buffer, "both    ");
-      break;
-    default:
-      sprintf(buffer, "error   ");
+      default:
       break;
     }
 
-    oled.cursorTo (1, 0);
+    if (heater_power > 255)
+      heater_power = 255;
+      else if (heater_power < 0)
+      heater_power = 0;
+
+    sprintf (buffer, "P: %d     ", heater_power);
+    oled.cursorTo (2, 0);
     oled.printString (buffer);
+    
   }
 }
 //  ============================================================================
