@@ -4,7 +4,7 @@
 #include "sensor.h"
 
 #include "SSD1306_minimal/SSD1306_minimal.h"
-#include "stdio.h"
+#include <stdio.h>
 //  ============================================================================
 unsigned int sensor_temp;
 unsigned int heater_power;
@@ -54,7 +54,6 @@ int main()
     sprintf (buffer, "P: %d     ", heater_power);
     oled.cursorTo (2, 0);
     oled.printString (buffer);
-    
   }
 }
 //  ============================================================================

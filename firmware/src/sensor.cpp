@@ -1,7 +1,7 @@
 #include "sensor.h"
 
-#include "avr/interrupt.h"
-#include "avr/io.h"
+#include <avr/interrupt.h>
+#include <avr/io.h>
 
 //  ============================================================================
 volatile unsigned int frequency_count;

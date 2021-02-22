@@ -17,10 +17,10 @@ void init_buzzer()
     TCCR1 |= (1 << COM1A1);
 }
 //  ============================================================================
-void buzzer_beep(unsigned int duration)
+void buzzer_beep()
 {
     OCR1A = 0x40;
-    _delay_ms(duration);
+    _delay_ms(100);
     OCR1A = 0x00;
 }
 //  ============================================================================
